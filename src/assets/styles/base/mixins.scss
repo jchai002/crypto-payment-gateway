@@ -1,0 +1,84 @@
+@mixin bg-img($img, $size: cover, $posX: center, $posY: center, $repeat: no-repeat) {
+  background: url("/assets/images/#{$img}") $posX $posY $repeat;
+  background-size: $size;
+}
+
+@mixin block-fill-container {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+@mixin bg-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin bg-contain {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+@mixin img-contain {
+  img {
+    max-width: 100%;
+  }
+}
+
+@mixin keep-aspect-ratio($x, $y, $width) {
+  position: relative;
+  content: "";
+  width: $width;
+  display: inline-table;
+  padding-top: ($y / $x) * $width;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+  }
+}
+
+@mixin list-no-style {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+  }
+}
+
+@mixin link-style($color, $decor:none) {
+  color: $color;
+  text-decoration: $decor;
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color;
+    text-decoration: $decor;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

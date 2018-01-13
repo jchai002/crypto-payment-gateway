@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+// vendor
+@import "vendor/animate";
+
+// base
+@import "base/vars";
+@import "base/typography";
+@import "base/mixins";
+
+// global helpers
+@import "helpers";
+
+// global elements
+@import "elements";
+
+// global layout
+@import "layout";

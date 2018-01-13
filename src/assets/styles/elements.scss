@@ -1,0 +1,12 @@
+.btn-primary {
+  background-color: $primary-1;
+  border-color: $primary-1;
+  &:hover,
+  &:disabled {
+    background-color: $primary-2;
+    border-color: $primary-2;
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}
