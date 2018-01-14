@@ -12,13 +12,18 @@ routes.post("/transactions", async (req, res) => {
   const blockchainRes = await blockchain.pollForTransactionState(
     transaction_hash
   );
-  console.log("val", transaction_hash, provider_id, patient_id);
+
+  // TODO: get waiting room ID and send to UI
+  const wellAppRes = await wellApp.addToWaitingRoom(
+    transaction_hash,
+    provider_id,
+    patient_id
+  );
   if (blockchainRes == 1 || blockchainRes == "0x1") {
     res.send("0x1");
   } else {
     res.send("0x0");
   }
-  // TODO: send blockchain res to wellApp api
 });
 
 routes.post("/get-appointment", async (req, res) => {

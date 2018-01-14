@@ -37,7 +37,8 @@ export default class Payment extends Component {
             role="presentation"
           />
           <p className="ml-2">
-            Please wait, your transaction is being verified.
+            Please wait while your transaction is being verified with the
+            ethereum network.
           </p>
         </div>
       );
@@ -55,12 +56,13 @@ export default class Payment extends Component {
     if (status === TransactionStatus.SUCCESS) {
       return (
         <div className="message">
+          <p>Your transaction has been verified!</p>
           <p>
-            Congratulations, your transaction has been verified! Here is a link
-            to your waiting room{" "}
-            <a className="link" href="#">
-              Waiting Room
-            </a>
+            Please proceed to the{" "}
+            <a className="link" href="https://tele.joinwell.com">
+              waiting room
+            </a>{" "}
+            and Dr. {provider.lname} will attend to you shortly.
           </p>
         </div>
       );
