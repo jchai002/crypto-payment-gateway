@@ -41,11 +41,12 @@ export default class App extends Component {
         <div className="unauthenticated">
           <p>
             This Dapp requires the{" "}
-            <a className="link" href="https://metamask.io/">
+            <a target="_blank" className="link" href="https://metamask.io/">
               MetaMask
             </a>{" "}
             Chrome extension. You can{" "}
             <a
+              target="_blank"
               href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
               className="link"
             >
@@ -59,8 +60,8 @@ export default class App extends Component {
       return (
         <div className="unauthenticated">
           <p>
-            This Dapp requires you to be signed into an Ether wallet with the
-            <a className="link" href="https://metamask.io/">
+            This Dapp requires you to be signed into an Ether wallet with the{" "}
+            <a target="_blank" className="link" href="https://metamask.io/">
               MetaMask
             </a>{" "}
             Chrome extension.
