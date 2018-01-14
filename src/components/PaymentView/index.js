@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAppointmentInfo } from "../../actions/appointmentActions";
-import { payWithEther, payWithToken } from "../../actions/exchangeActions";
+import { payWithEther, payWithToken } from "../../actions/paymentActions";
 import * as TransactionStatus from "../../constants/TransactionStatus";
 import ethereumLogo from "app/assets/images/eth.png";
 
 @connect(
-  ({ appointment, web3, exchange }) => ({
+  ({ appointment, web3, payment }) => ({
     appointment,
     web3: web3.web3Instance,
-    exchange
+    payment
   }),
   { getAppointmentInfo, payWithEther, payWithToken }
 )
@@ -20,7 +20,7 @@ export default class Payment extends Component {
 
   renderMessage() {
     const { costETH, costToken, provider, patient } = this.props.appointment;
-    const { status } = this.props.exchange;
+    const { status, transaction_hash } = this.props.payment;
 
     if (status === TransactionStatus.PENDING) {
       return (
@@ -41,8 +41,16 @@ export default class Payment extends Component {
       return (
         <div className="message">
           <p>
-            Sorry, your transaction failed to process. You can try again or
-            notify our staff.
+            Sorry, your transaction failed to process. Please contact our staff
+            and present the transaction receipt:{" "}
+            <a
+              target="_blank"
+              href={`https://rinkeby.etherscan.io/tx/${transaction_hash}`}
+              className="address"
+            >
+              {" "}
+              {transaction_hash}
+            </a>
           </p>
         </div>
       );
@@ -50,7 +58,18 @@ export default class Payment extends Component {
     if (status === TransactionStatus.SUCCESS) {
       return (
         <div className="message">
-          <p>Your transaction has been verified!</p>
+          <p>
+            Your transaction has been verified! Here is your transaction
+            receipt:{" "}
+            <a
+              target="_blank"
+              href={`https://rinkeby.etherscan.io/tx/${transaction_hash}`}
+              className="address"
+            >
+              {" "}
+              {transaction_hash}
+            </a>
+          </p>
           <p>
             Please proceed to the{" "}
             <a className="link" href="https://tele.joinwell.com">
@@ -80,7 +99,7 @@ export default class Payment extends Component {
   }
 
   renderButtons() {
-    const { status } = this.props.exchange;
+    const { status } = this.props.payment;
     const { costETH, costToken, provider, patient } = this.props.appointment;
 
     if (status !== TransactionStatus.SUCCESS) {

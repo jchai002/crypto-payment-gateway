@@ -76,7 +76,7 @@ export default class App extends Component {
       <div className="app">
         <Header />
         <main className="container">{this.renderView()}</main>
-        <img className="caduceus" src={caduceus} />
+        <img className="caduceus" src={caduceus} role="presentation" />
       </div>
     );
   }

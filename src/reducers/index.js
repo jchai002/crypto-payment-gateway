@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 import web3 from "./web3Reducer";
 import wallet from "./walletReducer";
-import exchange from "./exchangeReducer";
+import payment from "./paymentReducer";
 import appointment from "./appointmentReducer";
 
 const reducer = combineReducers({
@@ -10,7 +10,7 @@ const reducer = combineReducers({
   appointment,
   web3,
   wallet,
-  exchange
+  payment
 });
 
 export default reducer;

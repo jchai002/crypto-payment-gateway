@@ -2,7 +2,7 @@ import Web3 from "web3";
 import store from "app/store";
 import tokenJSON from "contracts/WellToken.json";
 import detectNetwork from "web3-detect-network";
-const WELLAPP_WALLET_ADDRESS = "0x59e4525a31C38f0879DD2894e9f13243F9c58925";
+const WELLAPP_WALLET_ADDRESS = "0x2cdb7e99ec3db8254650e72e4d87087b4dfae176";
 
 export function getWeb3() {
   return new Promise((resolve, reject) => {
@@ -71,7 +71,7 @@ export function sendEther(amount) {
         from: walletAddress,
         to: WELLAPP_WALLET_ADDRESS,
         value: web3.toWei(amount, "ether"),
-        gas: 50000
+        gas: 90000
       },
       async (err, transaction_hash) => {
         if (err) {
@@ -94,7 +94,7 @@ export function sendToken(amount) {
       normalizedAmount,
       {
         from: walletAddress,
-        gas: 4612388
+        gas: 90000
       },
       function(err, transaction_hash) {
         if (err) {

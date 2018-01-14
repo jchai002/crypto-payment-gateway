@@ -38,7 +38,7 @@ async function postTransactionToServer(
   if (typeof transaction_hash === "undefined") {
     dispatch({
       type: TRANSACTION_STATUS_UPDATED,
-      status: TransactionStatus.FAIL
+      payload: { status: TransactionStatus.FAIL, transaction_hash: null }
     });
     return;
   }
@@ -46,7 +46,7 @@ async function postTransactionToServer(
   // update ui to pending
   dispatch({
     type: TRANSACTION_STATUS_UPDATED,
-    status: TransactionStatus.PENDING
+    payload: { status: TransactionStatus.PENDING, transaction_hash }
   });
 
   var response = await api.post("/transactions", {
@@ -63,6 +63,6 @@ async function postTransactionToServer(
 
   dispatch({
     type: TRANSACTION_STATUS_UPDATED,
-    status
+    payload: { status, transaction_hash }
   });
 }
