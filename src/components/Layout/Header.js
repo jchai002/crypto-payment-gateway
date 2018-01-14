@@ -18,12 +18,6 @@ export default class Header extends Component {
           <div className="logo">
             <img src={wellLogo} role="presentation" />
           </div>
-          <div className="wallet">
-            <p>
-              <span>Wallet Address:</span>
-              <span className="address">{this.props.wallet.address}</span>
-            </p>
-          </div>
           <div className="balances">
             <p>
               ETH: <span className="amount">{etherBalance}</span>

@@ -5,6 +5,8 @@ import { initializeWeb3 } from "app/actions/web3Actions";
 import { getWalletInfo } from "app/actions/walletActions";
 
 import Header from "app/components/Layout/Header";
+import Footer from "app/components/Layout/Footer";
+
 import { pollForAccountUpdate } from "app/util/polling";
 import caduceus from "app/assets/images/caduceus.svg";
 
@@ -78,6 +80,7 @@ export default class App extends Component {
         <Header />
         <main className="container">{this.renderView()}</main>
         <img className="caduceus" src={caduceus} role="presentation" />
+        <Footer />
       </div>
     );
   }
