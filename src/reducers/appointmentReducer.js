@@ -4,6 +4,9 @@ export default function(
   state = {
     provider: null,
     patient: null,
+    costUSD: 0,
+    costETH: 0,
+    costToken: 0,
     loading: true
   },
   action

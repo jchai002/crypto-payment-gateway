@@ -19,9 +19,14 @@ export default class Payment extends Component {
   }
 
   renderMessage() {
-    const { provider, patient } = this.props.appointment;
-    console.log("patient", patient);
-    console.log("provider", provider);
+    const {
+      costUSD,
+      costETH,
+      costToken,
+      provider,
+      patient
+    } = this.props.appointment;
+    console.log(this.props.appointment);
 
     const cost = 30;
     return (
@@ -31,30 +36,33 @@ export default class Payment extends Component {
           consultation with Dr. {provider.fname} {provider.lname}.
         </p>
         <p>
-          The appointment costs <span className="amount">${cost}</span>, at the
-          current exchange rate, this is equivalent to{" "}
-          <span className="amount">{Number(cost).toFixed(3)}</span> ETH or{" "}
-          <span className="amount">{Number(cost).toFixed(3)}</span> Well Tokens.
+          The appointment costs <span className="amount">${costUSD}</span>, at
+          the current exchange rate, this is equivalent to{" "}
+          <span className="amount">{Number(costETH).toFixed(3)}</span> ETH or{" "}
+          <span className="amount">{Number(costToken).toFixed(3)}</span> Well
+          Tokens.
         </p>
       </div>
     );
   }
 
   renderButtons() {
-    const { status, amountInETH, amountInToken } = this.props.exchange;
+    const { status } = this.props.exchange;
+    const { costETH, costToken } = this.props.appointment;
+
     if (status !== TransactionStatus.SUCCESS) {
       return (
         <div className="buttons">
           <button
             className="btn btn-primary"
-            onClick={() => this.props.payWithEther(amountInETH)}
+            onClick={() => this.props.payWithEther(costETH)}
             disabled={status === TransactionStatus.PENDING}
           >
             Pay with Ether
           </button>
           <button
             className="btn btn-primary"
-            onClick={() => this.props.payWithToken(amountInToken)}
+            onClick={() => this.props.payWithToken(costToken)}
             disabled={status === TransactionStatus.PENDING}
           >
             Pay with Well Tokens
