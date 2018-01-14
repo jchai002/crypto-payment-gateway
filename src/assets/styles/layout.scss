@@ -68,7 +68,8 @@ p {
   }
   padding: $space-lg;
   .eth-logo {
-    height: $space-lg;
+    height: 56px;
+    margin-right: $space-md;
   }
   .buttons {
     display: flex;
