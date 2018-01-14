@@ -1,10 +1,11 @@
 .btn-primary {
+  border-radius: 3px;
   background-color: $primary-1;
   border-color: $primary-1;
   &:hover,
   &:disabled {
-    background-color: $primary-2;
-    border-color: $primary-2;
+    background-color: lighten($primary-1, 0.1);
+    border-color: lighten($primary-1, 0.1);
   }
   &:disabled {
     opacity: 0.5;

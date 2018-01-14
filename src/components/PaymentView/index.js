@@ -19,13 +19,7 @@ export default class Payment extends Component {
   }
 
   renderMessage() {
-    const {
-      costUSD,
-      costETH,
-      costToken,
-      provider,
-      patient
-    } = this.props.appointment;
+    const { costETH, costToken, provider, patient } = this.props.appointment;
     const { status } = this.props.exchange;
 
     if (status === TransactionStatus.PENDING) {
@@ -71,15 +65,15 @@ export default class Payment extends Component {
     return (
       <div className="message">
         <p>
-          Hi {patient.fname} {patient.lname}, looks like you are seeking a
-          consultation with Dr. {provider.fname} {provider.lname}.
+          Hi {patient.fname} {patient.lname}, looks like you have chosen the
+          direct pay option for a consultation with Dr. {provider.fname}{" "}
+          {provider.lname}.
         </p>
         <p>
-          The appointment costs <span className="amount">${costUSD}</span>, at
-          the current exchange rate, this is equivalent to{" "}
+          You have the choice of paying with{" "}
           <span className="amount">{Number(costETH).toFixed(3)}</span> ETH or{" "}
-          <span className="amount">{Number(costToken).toFixed(3)}</span> Well
-          Tokens.
+          <span className="amount">{Number(costToken).toFixed(3)}</span>{" "}
+          WellTokens.
         </p>
       </div>
     );
@@ -124,7 +118,7 @@ export default class Payment extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-12 mx-auto">
+          <div className="col-12 col-lg-9">
             <div className="payment">
               {this.renderMessage()}
               {this.renderButtons()}

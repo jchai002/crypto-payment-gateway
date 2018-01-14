@@ -6,6 +6,7 @@ import { getWalletInfo } from "app/actions/walletActions";
 
 import Header from "app/components/Layout/Header";
 import { pollForAccountUpdate } from "app/util/polling";
+import caduceus from "app/assets/images/caduceus.svg";
 
 @connect(
   ({ web3, wallet }) => ({
@@ -58,10 +59,11 @@ export default class App extends Component {
       return (
         <div className="unauthenticated">
           <p>
-            Please login with{" "}
+            This Dapp requires you to be signed into an Ether wallet with the
             <a className="link" href="https://metamask.io/">
               MetaMask
-            </a>
+            </a>{" "}
+            Chrome extension.
           </p>
         </div>
       );
@@ -74,6 +76,7 @@ export default class App extends Component {
       <div className="app">
         <Header />
         <main className="container">{this.renderView()}</main>
+        <img className="caduceus" src={caduceus} />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getWalletInfo } from "../../actions/walletActions";
+import wellLogo from "app/assets/images/well_logo.png";
 
 @connect(({ wallet }) => ({ wallet }), { getWalletInfo })
 export default class Header extends Component {
@@ -15,7 +16,7 @@ export default class Header extends Component {
       <header>
         <div className="nav-desktop">
           <div className="logo">
-            <h1>Pay Well</h1>
+            <img src={wellLogo} role="presentation" />
           </div>
           <div className="wallet">
             <p>
