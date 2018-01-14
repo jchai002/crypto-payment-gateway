@@ -7,7 +7,7 @@ var WatchMissingNodeModulesPlugin = require("react-dev-utils/WatchMissingNodeMod
 var getClientEnvironment = require("./env");
 var path = require("path");
 var paths = require("./paths");
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require("dotenv-webpack");
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 var publicPath = "/";
@@ -210,7 +210,9 @@ module.exports = {
     ];
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      path: "../.env"
+    }),
     // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In development, this will be an empty string.

@@ -2,6 +2,7 @@ import Web3 from "web3";
 import store from "app/store";
 import tokenJSON from "contracts/WellToken.json";
 import detectNetwork from "web3-detect-network";
+const WELLAPP_WALLET_ADDRESS = "0x59e4525a31C38f0879DD2894e9f13243F9c58925";
 
 export function getWeb3() {
   return new Promise((resolve, reject) => {
@@ -68,7 +69,7 @@ export function sendEther(amount) {
     web3.eth.sendTransaction(
       {
         from: walletAddress,
-        to: process.env.FACEOFF_WALLET_ADDRESS,
+        to: WELLAPP_WALLET_ADDRESS,
         value: web3.toWei(amount, "ether"),
         gas: 50000
       },
@@ -89,7 +90,7 @@ export function sendToken(amount) {
     const decimals = await getTokenDecimals(tokenContract);
     const normalizedAmount = amount * Math.pow(10, decimals);
     tokenContract.transfer(
-      process.env.FACEOFF_WALLET_ADDRESS,
+      WELLAPP_WALLET_ADDRESS,
       normalizedAmount,
       {
         from: walletAddress,
@@ -122,12 +123,13 @@ export async function getTokenBalance() {
 // helpers
 async function getTokenContract() {
   const web3 = store.getState().web3;
-  const tokenContractAddress =
-    process.env.TOKEN_CONTRACT_ADDRESS || web3.eth.accounts[0];
   const network = await detectNetwork(web3.currentProvider);
   return await web3.eth
     .contract(tokenJSON.abi)
-    .at(tokenContractAddress || tokenJSON.networks[network.id].address);
+    .at(
+      process.env.TOKEN_CONTRACT_ADDRESS ||
+        tokenJSON.networks[network.id].address
+    );
 }
 
 function getTokenDecimals(tokenContract) {

@@ -32,7 +32,7 @@ const duration = {
 
 const BigNumber = web3.BigNumber;
 // 1 wei --> 1200 TestToken
-const rate = 1200;
+const rate = 5000;
 // start one week from now
 const startTime = latestTime() + duration.minutes(1);
 // run for one week

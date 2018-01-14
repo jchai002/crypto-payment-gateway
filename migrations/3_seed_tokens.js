@@ -9,12 +9,10 @@ async function seed(accounts) {
   // wait for contract deploy
   const owner = accounts[0];
   const beneficiary = accounts[1];
-
   const decimals = await token.decimals();
-  console.log("token decimals", decimals);
   const amountToMint = 998 * Math.pow(10, decimals);
   // have the owner give the second account some tokens so we use the second account for testing
+  console.log("minting", amountToMint, "tokens to send to", beneficiary);
   const mintedEvent = await token.mint(beneficiary, amountToMint);
-  console.log("minting", amountToMint, "tokens");
   console.log("token mint finished", mintedEvent);
 }
