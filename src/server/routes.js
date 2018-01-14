@@ -9,8 +9,12 @@ routes.post("/transactions", async (req, res) => {
     return res.send(400, "Invalid arguments");
   }
   // wait for poll to come back with status
-  const { status } = await blockchain.pollForTransactionState(tx_hash);
-  res.send(status);
+  const blockchainRes = await blockchain.pollForTransactionState(tx_hash);
+  if (blockchainRes == 1 || blockchainRes == "0x1") {
+    res.send("0x1");
+  } else {
+    res.send("0x0");
+  }
   // TODO: send blockchain res to wellApp api
 });
 

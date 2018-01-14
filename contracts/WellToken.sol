@@ -4,7 +4,7 @@ import "./deps/MintableToken.sol";
 
 contract WellToken is MintableToken {
     string public constant name = "WellToken";
-    string public constant symbol = "Well";
+    string public constant symbol = "WELL";
     uint8 public constant decimals = 18;
 
     // overriders the transfer function from BasicToken with a few more requires

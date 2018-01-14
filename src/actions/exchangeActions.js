@@ -15,7 +15,7 @@ export function payWithToken(amount) {
   // should be faceOff wallet address
   return async dispatch => {
     let tx_hash = await promisedWeb3.sendToken(amount);
-    // postTransactionToServer(dispatch, tx_hash);
+    postTransactionToServer(dispatch, tx_hash);
   };
 }
 

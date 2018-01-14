@@ -32,7 +32,7 @@ function pollForTransactionState(tx_hash) {
       setTimeout(poll.bind(null, resolve), 3000);
     } else {
       // otherwise stop polling and resolve
-      resolve(result);
+      resolve(result.status);
     }
   });
 }
