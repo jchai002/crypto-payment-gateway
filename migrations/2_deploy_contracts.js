@@ -1,5 +1,5 @@
 var WellToken = artifacts.require("./WellToken.sol");
-var WellCrowdsale = artifacts.require("./WellTokenCrowdsale.sol");
+var WellTokenCrowdsale = artifacts.require("./WellTokenCrowdsale.sol");
 
 function latestTime() {
   return web3.eth.getBlock("latest").timestamp;
@@ -49,20 +49,20 @@ async function liveDeploy(deployer, accounts) {
   // wait for contract deploy
   console.log("truffle deployed token address", token.address);
 
-  // // Deploy the crowdsale
-  // const address = accounts[0];
-  // console.log("Contract arguments: ", {
-  //   startTime,
-  //   endTime,
-  //   rate,
-  //   address
-  // });
-  //
-  // // wait for contract deploy
-  // await deployer.deploy(WellCrowdsale, startTime, endTime, rate, address);
-  //
-  // const crowdsale = await WellCrowdsale.deployed();
-  // // Lookup and print the token associated with the crowdsale contract
+  // Deploy the crowdsale
+  const address = "0xeb6402ce5dac9d4001298bc11f777eead1db3b64";
+  console.log("Contract arguments: ", {
+    startTime,
+    endTime,
+    rate,
+    address
+  });
+
+  // wait for contract deploy
+  await deployer.deploy(WellTokenCrowdsale, startTime, endTime, rate, address);
+
+  const crowdsale = await WellTokenCrowdsale.deployed();
+  // Lookup and print the token associated with the crowdsale contract
   // const crowdsaleToken = await crowdsale.token.call();
   // console.log("crowdsale token address: ", crowdsaleToken);
 }
