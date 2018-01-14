@@ -85,21 +85,26 @@ export default class Payment extends Component {
 
   renderButtons() {
     const { status } = this.props.exchange;
-    const { costETH, costToken } = this.props.appointment;
+    const { costETH, costToken, provider, patient } = this.props.appointment;
 
+    console.log(provider, patient);
     if (status !== TransactionStatus.SUCCESS) {
       return (
         <div className="buttons">
           <button
             className="btn btn-primary"
-            onClick={() => this.props.payWithEther(costETH)}
+            onClick={() =>
+              this.props.payWithEther(costETH, provider.id, patient.id)
+            }
             disabled={status === TransactionStatus.PENDING}
           >
             Pay with Ether
           </button>
           <button
             className="btn btn-primary"
-            onClick={() => this.props.payWithToken(costToken)}
+            onClick={() =>
+              this.props.payWithToken(costToken, provider.id, patient.id)
+            }
             disabled={status === TransactionStatus.PENDING}
           >
             Pay with Well Tokens

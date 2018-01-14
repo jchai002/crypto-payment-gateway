@@ -36,4 +36,6 @@ async function getPatientById(id) {
   }
 }
 
+async function addToWaitingRoom() {}
+
 module.exports = { getProvider, getPatientById };

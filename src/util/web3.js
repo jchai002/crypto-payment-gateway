@@ -73,11 +73,11 @@ export function sendEther(amount) {
         value: web3.toWei(amount, "ether"),
         gas: 50000
       },
-      async (err, tx_hash) => {
+      async (err, transaction_hash) => {
         if (err) {
           reject(err);
         }
-        resolve(tx_hash);
+        resolve(transaction_hash);
       }
     );
   });
@@ -96,11 +96,11 @@ export function sendToken(amount) {
         from: walletAddress,
         gas: 4612388
       },
-      function(err, tx_hash) {
+      function(err, transaction_hash) {
         if (err) {
           reject(err);
         }
-        resolve(tx_hash);
+        resolve(transaction_hash);
       }
     );
   });

@@ -4,23 +4,38 @@ import * as promisedWeb3 from "app/util/web3";
 import axios from "axios";
 const api = axios.create({ baseURL: "/v1" });
 
-export function payWithEther(amount) {
+export function payWithEther(amount, provider_id, patient_id) {
   return async dispatch => {
-    let tx_hash = await promisedWeb3.sendEther(amount);
-    postTransactionToServer(dispatch, tx_hash);
+    let transaction_hash = await promisedWeb3.sendEther(amount);
+    postTransactionToServer(
+      dispatch,
+      transaction_hash,
+      provider_id,
+      patient_id
+    );
   };
 }
 
-export function payWithToken(amount) {
+export function payWithToken(amount, provider_id, patient_id) {
   // should be faceOff wallet address
   return async dispatch => {
-    let tx_hash = await promisedWeb3.sendToken(amount);
-    postTransactionToServer(dispatch, tx_hash);
+    let transaction_hash = await promisedWeb3.sendToken(amount);
+    postTransactionToServer(
+      dispatch,
+      transaction_hash,
+      provider_id,
+      patient_id
+    );
   };
 }
 
-async function postTransactionToServer(dispatch, tx_hash) {
-  if (typeof tx_hash === "undefined") {
+async function postTransactionToServer(
+  dispatch,
+  transaction_hash,
+  provider_id,
+  patient_id
+) {
+  if (typeof transaction_hash === "undefined") {
     dispatch({
       type: TRANSACTION_STATUS_UPDATED,
       status: TransactionStatus.FAIL
@@ -34,7 +49,11 @@ async function postTransactionToServer(dispatch, tx_hash) {
     status: TransactionStatus.PENDING
   });
 
-  var response = await api.post("/transactions", { tx_hash });
+  var response = await api.post("/transactions", {
+    transaction_hash,
+    provider_id,
+    patient_id
+  });
 
   // dispatch button update
   var status =
