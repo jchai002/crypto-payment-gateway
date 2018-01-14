@@ -5,6 +5,8 @@ import { initializeWeb3 } from "app/actions/web3Actions";
 import { getWalletInfo } from "app/actions/walletActions";
 
 import Header from "app/components/Layout/Header";
+import Footer from "app/components/Layout/Footer";
+
 import { pollForAccountUpdate } from "app/util/polling";
 import caduceus from "app/assets/images/caduceus.svg";
 
@@ -41,11 +43,12 @@ export default class App extends Component {
         <div className="unauthenticated">
           <p>
             This Dapp requires the{" "}
-            <a className="link" href="https://metamask.io/">
+            <a target="_blank" className="link" href="https://metamask.io/">
               MetaMask
             </a>{" "}
             Chrome extension. You can{" "}
             <a
+              target="_blank"
               href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
               className="link"
             >
@@ -59,8 +62,8 @@ export default class App extends Component {
       return (
         <div className="unauthenticated">
           <p>
-            This Dapp requires you to be signed into an Ether wallet with the
-            <a className="link" href="https://metamask.io/">
+            This Dapp requires you to be signed into an Ether wallet with the{" "}
+            <a target="_blank" className="link" href="https://metamask.io/">
               MetaMask
             </a>{" "}
             Chrome extension.
@@ -76,7 +79,8 @@ export default class App extends Component {
       <div className="app">
         <Header />
         <main className="container">{this.renderView()}</main>
-        <img className="caduceus" src={caduceus} />
+        <img className="caduceus" src={caduceus} role="presentation" />
+        <Footer />
       </div>
     );
   }

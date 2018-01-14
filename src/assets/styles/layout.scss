@@ -33,7 +33,9 @@ body {
   color: $text-1;
   font-family: "NunitoSans";
   font-weight: $normal;
+  height: 100vh;
   overflow: hidden;
+  position: relative;
   .caduceus {
     opacity: 0.05;
     position: absolute;
@@ -41,6 +43,16 @@ body {
     top: 120px;
     right: -140px;
     z-index: -1;
+  }
+  .wallet {
+    position: absolute;
+    bottom: $space-sm;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    p {
+      color: $gray-3;
+    }
   }
 }
 
@@ -68,7 +80,8 @@ p {
   }
   padding: $space-lg;
   .eth-logo {
-    height: $space-lg;
+    height: 56px;
+    margin-right: $space-md;
   }
   .buttons {
     display: flex;

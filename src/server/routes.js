@@ -14,11 +14,12 @@ routes.post("/transactions", async (req, res) => {
   );
 
   // TODO: get waiting room ID and send to UI
-  const wellAppRes = await wellApp.addToWaitingRoom(
-    transaction_hash,
-    provider_id,
-    patient_id
-  );
+  // const wellAppRes = await wellApp.addToWaitingRoom(
+  //   transaction_hash,
+  //   provider_id,
+  //   patient_id
+  // );
+
   if (blockchainRes == 1 || blockchainRes == "0x1") {
     res.send("0x1");
   } else {
