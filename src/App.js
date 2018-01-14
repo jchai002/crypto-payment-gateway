@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import "app/assets/styles/app.scss";
 import { initializeWeb3 } from "app/actions/web3Actions";
 import { getWalletInfo } from "app/actions/walletActions";
-import { getUserSessionData } from "app/actions/authActions";
-import { UNAUTHORIZED, EXPIRED } from "app/constants/AuthStatus";
 
 import Header from "app/components/Layout/Header";
 import { pollForAccountUpdate } from "app/util/polling";
@@ -17,8 +15,7 @@ import { pollForAccountUpdate } from "app/util/polling";
   }),
   {
     initializeWeb3,
-    getWalletInfo,
-    getUserSessionData
+    getWalletInfo
   }
 )
 export default class App extends Component {
@@ -28,15 +25,6 @@ export default class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.web3 && nextProps.auth.status === null) {
-      // try to authorize
-      const { authorization, exchange_id } = this.props.location.query
-        ? this.props.location.query
-        : null;
-      if (authorization) {
-        return this.props.getUserSessionData(authorization, exchange_id);
-      }
-    }
     if (!nextProps.wallet.address) {
       // only get wallet if not logged in
       return this.props.getWalletInfo();

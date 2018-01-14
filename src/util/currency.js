@@ -8,7 +8,7 @@ export async function getDollarToETHRate(dollars) {
   return dollars / Number(rate);
 }
 
-export async function getETHToICashRate(amountInETH) {
+export async function getDollarToTokenRate(amountInETH) {
   // mock api call
   await setTimeout(null, 2000);
   // mock price of Well to be 0.5 ether

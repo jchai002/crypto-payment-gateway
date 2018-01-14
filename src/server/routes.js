@@ -18,13 +18,19 @@ routes.post("/transactions", async (req, res) => {
   // TODO: send blockchain res to wellApp api
 });
 
+routes.post("/get-session", async (req, res) => {
+  const provider = await wellApp.getProvider();
+  const patient = await wellApp.getPatientById(5);
+  res.send({ provider, patient });
+});
+
 routes.post("/get-user-session-data", async (req, res) => {
-  let { authorization, exchange_id } = req.body;
-  if (typeof authorization === "undefined") {
-    return res.send(401, "Invalid arguments");
-  }
-  let authRes = await wellApp.getUserSessionData(authorization, exchange_id);
-  res.send(authRes);
+  // let { authorization, exchange_id } = req.body;
+  // if (typeof authorization === "undefined") {
+  //   return res.send(401, "Invalid arguments");
+  // }
+  // let authRes = await wellApp.getUserSessionData(authorization, exchange_id);
+  res.send(null);
 });
 
 module.exports = routes;

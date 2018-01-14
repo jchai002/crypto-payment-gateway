@@ -1,5 +1,5 @@
 var WellToken = artifacts.require("./WellToken.sol");
-var WellCrowdsale = artifacts.require("./WellCrowdsale.sol");
+var WellCrowdsale = artifacts.require("./WellTokenCrowdsale.sol");
 
 function latestTime() {
   return web3.eth.getBlock("latest").timestamp;

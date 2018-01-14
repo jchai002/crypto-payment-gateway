@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getSessionData } from "../../actions/authActions";
 import { payWithEther, payWithToken } from "../../actions/exchangeActions";
 import * as TransactionStatus from "../../constants/TransactionStatus";
 import ethereumLogo from "app/assets/images/eth.png";
@@ -9,9 +10,13 @@ import ethereumLogo from "app/assets/images/eth.png";
     web3: web3.web3Instance,
     exchange
   }),
-  { payWithEther, payWithToken }
+  { getSessionData, payWithEther, payWithToken }
 )
 export default class Payment extends Component {
+  componentWillMount() {
+    this.props.getSessionData();
+  }
+
   renderMessage() {
     const {
       status,
@@ -93,7 +98,7 @@ export default class Payment extends Component {
             onClick={() => this.props.payWithToken(amountInToken)}
             disabled={status === TransactionStatus.PENDING}
           >
-            Pay with Well
+            Pay with Well Tokens
           </button>
         </div>
       );
