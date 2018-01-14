@@ -83,7 +83,6 @@ export default class Payment extends Component {
     const { status } = this.props.exchange;
     const { costETH, costToken, provider, patient } = this.props.appointment;
 
-    console.log(provider, patient);
     if (status !== TransactionStatus.SUCCESS) {
       return (
         <div className="buttons">
