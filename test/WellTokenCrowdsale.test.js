@@ -11,7 +11,7 @@ const should = require("chai")
   .use(require("chai-bignumber")(BigNumber))
   .should();
 
-const Crowdsale = artifacts.require("WellCrowdsale");
+const Crowdsale = artifacts.require("WellTokenCrowdsale");
 const MintableToken = artifacts.require("WellToken");
 
 contract("Crowdsale", function([_, investor, wallet, purchaser]) {
