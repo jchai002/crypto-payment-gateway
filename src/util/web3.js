@@ -126,10 +126,7 @@ async function getTokenContract() {
   const network = await detectNetwork(web3.currentProvider);
   return await web3.eth
     .contract(tokenJSON.abi)
-    .at(
-      process.env.TOKEN_CONTRACT_ADDRESS ||
-        tokenJSON.networks[network.id].address
-    );
+    .at(tokenJSON.networks[network.id].address);
 }
 
 function getTokenDecimals(tokenContract) {
