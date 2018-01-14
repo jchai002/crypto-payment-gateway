@@ -18,7 +18,7 @@ routes.post("/transactions", async (req, res) => {
   // TODO: send blockchain res to wellApp api
 });
 
-routes.post("/get-session", async (req, res) => {
+routes.post("/get-appointment", async (req, res) => {
   const provider = await wellApp.getProvider();
   const patient = await wellApp.getPatientById(5);
   console.log(provider, patient);

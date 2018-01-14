@@ -3,9 +3,9 @@ import { getDollarToETHRate, getDollarToTokenRate } from "app/util/currency";
 import axios from "axios";
 const api = axios.create({ baseURL: "/v1" });
 
-export function getSessionData() {
+export function getAppointmentInfo() {
   return async dispatch => {
-    var res = await api.post("/get-session");
+    var res = await api.post("/get-appointment");
     dispatch({
       type: SESSION_DATA_FETCHED,
       payload: res.data

@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getSessionData } from "../../actions/authActions";
+import { getAppointmentInfo } from "../../actions/appointmentActions";
 import { payWithEther, payWithToken } from "../../actions/exchangeActions";
 import * as TransactionStatus from "../../constants/TransactionStatus";
 import ethereumLogo from "app/assets/images/eth.png";
 
 @connect(
-  ({ auth, web3, exchange }) => ({
-    auth,
+  ({ appointment, web3, exchange }) => ({
+    appointment,
     web3: web3.web3Instance,
     exchange
   }),
-  { getSessionData, payWithEther, payWithToken }
+  { getAppointmentInfo, payWithEther, payWithToken }
 )
 export default class Payment extends Component {
   componentWillMount() {
-    this.props.getSessionData();
+    this.props.getAppointmentInfo();
   }
 
   renderMessage() {
-    const { provider, patient } = this.props.auth;
+    const { provider, patient } = this.props.appointment;
     console.log("patient", patient);
     console.log("provider", provider);
 
@@ -66,7 +66,7 @@ export default class Payment extends Component {
   }
 
   render() {
-    if (this.props.auth.loading) {
+    if (this.props.appointment.loading) {
       return <div>loading...</div>;
     }
     return (
