@@ -43,11 +43,11 @@ module.exports = function(deployer, network, accounts) {
 };
 
 async function liveDeploy(deployer, accounts) {
-  // deploy token contract first
-  await deployer.deploy(WellToken);
-  const token = await WellToken.deployed();
-  // wait for contract deploy
-  console.log("truffle deployed token address", token.address);
+  // // deploy token contract first
+  // await deployer.deploy(WellToken);
+  // const token = await WellToken.deployed();
+  // // wait for contract deploy
+  // console.log("truffle deployed token address", token.address);
 
   // Deploy the crowdsale
   const address = "0xeb6402ce5dac9d4001298bc11f777eead1db3b64";
