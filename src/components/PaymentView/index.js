@@ -6,7 +6,8 @@ import * as TransactionStatus from "../../constants/TransactionStatus";
 import ethereumLogo from "app/assets/images/eth.png";
 
 @connect(
-  ({ web3, exchange }) => ({
+  ({ auth, web3, exchange }) => ({
+    auth,
     web3: web3.web3Instance,
     exchange
   }),
@@ -18,64 +19,22 @@ export default class Payment extends Component {
   }
 
   renderMessage() {
-    const {
-      status,
-      username,
-      amountInUSD,
-      amountInETH,
-      amountInToken
-    } = this.props.exchange;
+    const { provider, patient } = this.props.auth;
+    console.log("patient", patient);
+    console.log("provider", provider);
 
-    if (status === TransactionStatus.PENDING) {
-      return (
-        <div className="message flex flex-align-center">
-          <img
-            className="eth-logo animated infinite pulse"
-            src={ethereumLogo}
-            role="presentation"
-          />
-          <p className="ml-2">
-            Please wait, your transaction is being verified.
-          </p>
-        </div>
-      );
-    }
-    if (status === TransactionStatus.FAILED) {
-      return (
-        <div className="message">
-          <p>
-            Sorry, your transaction failed to process. You can try again or
-            notify our staff.
-          </p>
-        </div>
-      );
-    }
-    if (status === TransactionStatus.SUCCESS) {
-      return (
-        <div className="message">
-          <p>
-            Congratulations, your transaction has been verified! Here is a link
-            to your waiting room{" "}
-            <a className="link" href="#">
-              Waiting Room
-            </a>
-          </p>
-        </div>
-      );
-    }
-
+    const cost = 30;
     return (
       <div className="message">
         <p>
-          Hi {username}, please confirm that you want to pay{" "}
-          <span className="amount">${amountInUSD}</span> for a physician
-          consultation.
+          Hi {patient.fname} {patient.lname}, looks like you are seeking a
+          consultation with Dr. {provider.fname} {provider.lname}.
         </p>
         <p>
-          At the current exchange rate, this is equivalent to{" "}
-          <span className="amount">{Number(amountInETH).toFixed(3)}</span> ETH
-          or <span className="amount">{Number(amountInToken).toFixed(3)}</span>{" "}
-          Well Tokens.
+          The appointment costs <span className="amount">${cost}</span>, at the
+          current exchange rate, this is equivalent to{" "}
+          <span className="amount">{Number(cost).toFixed(3)}</span> ETH or{" "}
+          <span className="amount">{Number(cost).toFixed(3)}</span> Well Tokens.
         </p>
       </div>
     );
@@ -107,12 +66,14 @@ export default class Payment extends Component {
   }
 
   render() {
+    if (this.props.auth.loading) {
+      return <div>loading...</div>;
+    }
     return (
-      <div className="container payment">
+      <div className="container">
         <div className="row">
-          <div className="col-12 col-lg-8 mx-auto">
-            <div className="payment__box">
-              <h2>Pay with Ether or Well Tokens</h2>
+          <div className="col-12 mx-auto">
+            <div className="payment">
               {this.renderMessage()}
               {this.renderButtons()}
             </div>

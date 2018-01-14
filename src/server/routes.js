@@ -21,6 +21,7 @@ routes.post("/transactions", async (req, res) => {
 routes.post("/get-session", async (req, res) => {
   const provider = await wellApp.getProvider();
   const patient = await wellApp.getPatientById(5);
+  console.log(provider, patient);
   res.send({ provider, patient });
 });
 

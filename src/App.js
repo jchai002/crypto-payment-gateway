@@ -8,10 +8,9 @@ import Header from "app/components/Layout/Header";
 import { pollForAccountUpdate } from "app/util/polling";
 
 @connect(
-  ({ web3, wallet, auth }) => ({
+  ({ web3, wallet }) => ({
     web3,
-    wallet,
-    auth
+    wallet
   }),
   {
     initializeWeb3,
@@ -35,7 +34,6 @@ export default class App extends Component {
   }
 
   renderView() {
-    var { status } = this.props.auth;
     if (!this.props.web3) {
       // if web3 not found
       return (
